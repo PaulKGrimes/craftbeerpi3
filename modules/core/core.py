@@ -83,7 +83,7 @@ class SensorAPI(object):
     def init_sensors(self):
         '''
         Initialize all sensors
-        :return: 
+        :return:
         '''
 
         self.app.logger.info("Init Sensors")
@@ -108,15 +108,15 @@ class SensorAPI(object):
     def init_sensor(self, id):
         '''
         initialize sensor by id
-        :param id: 
-        :return: 
+        :param id:
+        :return:
         '''
 
         def start_active_sensor(instance):
             '''
             start active sensors as background job
-            :param instance: 
-            :return: 
+            :param instance:
+            :return:
             '''
             instance.execute()
 
@@ -376,7 +376,7 @@ class CraftBeerPi(ActorAPI, SensorAPI):
 
     # Event Bus
     def event(self, name, async=False):
-
+        
         def real_decorator(function):
             if self.eventbus.get(name) is None:
                 self.eventbus[name] = []
@@ -444,7 +444,7 @@ class CraftBeerPi(ActorAPI, SensorAPI):
     def run_init(self):
         '''
         call all initialziers after startup
-        :return: 
+        :return:
         '''
         self.app.logger.info("Invoke Init")
         self.cache["init"] = sorted(self.cache["init"], key=lambda k: k['order'])
@@ -458,10 +458,10 @@ class CraftBeerPi(ActorAPI, SensorAPI):
 
         '''
         Background Task Decorator
-        :param key: 
-        :param interval: 
-        :param config_parameter: 
-        :return: 
+        :param key:
+        :param interval:
+        :param config_parameter:
+        :return:
         '''
         def real_decorator(function):
             self.cache["background"].append({"function": function, "key": key, "interval": interval, "config_parameter": config_parameter})
@@ -473,7 +473,7 @@ class CraftBeerPi(ActorAPI, SensorAPI):
     def run_background_processes(self):
         '''
         call all background task after startup
-        :return: 
+        :return:
         '''
         self.app.logger.info("Start Background")
 
